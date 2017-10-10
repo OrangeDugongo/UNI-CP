@@ -1,0 +1,78 @@
+Book 1
+Raffaele
+Mignone
+2018
+Romanzo Epistolare
+Ed Terranova
+Book 2
+Noemi
+Mincolelli
+2018
+Romanzo
+Ed Terranova
+Disinformazia 
+Francesco
+Nicodemo 
+2017 
+Saggio 
+Marsilio Nodi 
+L’assassinio di Pitagora 
+Marcos 
+Chicot 
+2013 
+Romanzo 
+Salani
+1984
+George
+Orwell
+1948
+Romanzo
+Harvill Secker
+Fight Club
+Chuck
+Palahniuk
+1996
+Romanzo
+W. W. Norton & Company
+A Game of Thrones
+George R. R.
+Martin
+1996
+Romanzo Fantasy
+Bantam Spectra
+A Clash of Kings
+George R. R.
+Martin
+1999
+Romanzo Fantasy
+Bantam Spectra
+A Storm of Swords
+George R. R.
+Martin
+2000
+Romanzo Fantasy
+Bantam Spectra
+A Feast for Crows
+George R. R.
+Martin
+2005
+Romanzo Fantasy
+Bantam Spectra
+A Dance with Dragons
+George R. R.
+Martin
+2011
+Romanzo Fantasy
+Bantam Spectra
+The Winds of Winter
+George R. R.
+Martin
+2050
+Romanzo Fantasy
+Bantam Spectra
+A Dream of Spring
+George R. R.
+Martin
+Mai
+Romanzo Fantasy
+Bantam Spectra
