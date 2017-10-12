@@ -1,0 +1,105 @@
+Disinformazia 
+AT01
+2017 
+Saggio 
+Marsilio Nodi
+res/file/info01.txt
+res/img/cop01.jpg
+L’assassinio di Pitagora 
+AT02
+2013 
+Romanzo 
+Salani
+res/file/info02.txt
+res/img/cop02.jpg
+1984
+AT03
+1948
+Romanzo
+Harvill Secker
+res/file/info03.txt
+res/img/cop03.jpg
+La Fattoria degli Animali
+AT03
+1945
+Romanzo
+Harvill Secker
+res/file/info04.txt
+res/img/cop04.jpg
+Fight Club
+AT04
+1996
+Romanzo
+W. W. Norton & Company
+res/file/info05.txt
+res/img/cop05.jpg
+A Game of Thrones
+AT05
+1996
+Romanzo Fantasy
+Bantam Spectra
+res/file/info06.txt
+res/img/cop06.jpg
+A Clash of Kings
+AT05
+1999
+Romanzo Fantasy
+Bantam Spectra
+res/file/info07.txt
+res/img/cop07.jpg
+A Storm of Swords
+AT05
+2000
+Romanzo Fantasy
+Bantam Spectra
+res/file/info08.txt
+res/img/cop08.jpg
+A Feast for Crows
+AT05
+2005
+Romanzo Fantasy
+Bantam Spectra
+res/file/info09.txt
+res/img/cop09.jpg
+A Dance with Dragons
+AT05
+2011
+Romanzo Fantasy
+Bantam Spectra
+res/file/info10.txt
+res/img/cop10.jpg
+The Winds of Winter
+AT05
+2050
+Romanzo Fantasy
+Bantam Spectra
+res/file/info11.txt
+res/img/cop11.jpg
+A Dream of Spring
+AT05
+Mai
+Romanzo Fantasy
+Bantam Spectra
+res/file/info12.txt
+res/img/cop12.jpg
+Castelli di rabbia
+AT06
+1991
+Fiction
+Feltrinelli
+res/file/info13.txt
+res/img/cop13.jpg
+Norwegiam Wood
+AT07
+1987
+Romanzo di formazione
+Kōdansha
+res/file/info14.txt
+res/img/cop14.jpg
+V for Vendetta
+AT08
+1991
+Graphic novel
+Vertigo
+res/file/info15.txt
+res/img/cop15.jpg
