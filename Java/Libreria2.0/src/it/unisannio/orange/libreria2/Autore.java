@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Autore {
 
     public Autore(String nome, String cognome, String codice_autore, String path_bio, String path_img) {
+        libri = new DefaultListModel<Libro>();
         this.nome = nome;
         this.cognome = cognome;
         this.codice_autore = codice_autore;

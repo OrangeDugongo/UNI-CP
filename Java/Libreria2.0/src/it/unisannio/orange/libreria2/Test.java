@@ -6,16 +6,25 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 
 public class Test {
 
     public Test() {
+
+        try{
+            readLibri(new Scanner(new File ("res/file/libri.txt")));
+        }catch(FileNotFoundException e){
+            System.err.println("Il file non è stato trovato.");
+            System.exit(1);
+        }
 
         //Frame
         JFrame frame = new JFrame("Libreria");
@@ -27,10 +36,14 @@ public class Test {
         elenco.setLayout(new FlowLayout());
         //Lista autori
         lista_autori = new JList<Autore>();
+        lista_autori.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista_autori.addListSelectionListener(new ListaAutoriListener());
         JScrollPane scroll_autori = new JScrollPane();
         scroll_autori.setViewportView(lista_autori);
         //Lista libri
         lista_libri = new JList<Libro>();
+        lista_libri.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista_libri.addListSelectionListener(new ListaLibriListener());
         JScrollPane scroll_libri = new JScrollPane();
         scroll_libri.setViewportView(lista_libri);
         elenco.add(scroll_autori);
@@ -41,21 +54,20 @@ public class Test {
         info.setLayout(new GridLayout(5,2));
         //Titolo
         JLabel titolo = new JLabel("Titolo:");
-        JLabel titoloD = new JLabel();
+        titoloD = new JLabel();
         //anno
         JLabel anno = new JLabel("Anno:");
-        JLabel annoD = new JLabel();
+        annoD = new JLabel();
         //Genere
         JLabel genere = new JLabel("Genere:");
-        JLabel genereD = new JLabel();
+        genereD = new JLabel();
         //Casa_editrice
         JLabel casa_editrice = new JLabel("Casa Editrice:");
-        JLabel casa_editriceD = new JLabel();
+        casa_editriceD = new JLabel();
         //Load
         JLabel space = new JLabel();
         JButton load = new JButton("load");
         load.addActionListener(new LoadListener());
-
         info.add(titolo);
         info.add(titoloD);
         info.add(anno);
@@ -111,22 +123,44 @@ public class Test {
         new Test();
     }
 
-    public void read(Scanner sc){
+    public void readAutore(Scanner sc){
 
         Autore a = Autore.read(sc);
         while(a!=null){
+            for(Libro l: tutti_libri)
+                if(l.getCodice_autore().equals(a.getCodice_autore()))
+                    a.addLibro(l);
             autori.addElement(a);
             a = Autore.read(sc);
         }
     }
 
+    public void readLibri(Scanner sc){
+        tutti_libri = new ArrayList<Libro>();
+        Libro l = Libro.read(sc);
+        while(l!=null)
+        {
+            tutti_libri.add(l);
+            l=Libro.read(sc);
+        }
+    }
+
+
 
     private JList<Autore> lista_autori;
     private JList<Libro> lista_libri;
     private DefaultListModel<Autore> autori;
-    private DefaultListModel<Libro> libri;
+    private ArrayList<Libro> tutti_libri;
+    private JLabel titoloD;
+    private JLabel annoD;
+    private JLabel genereD;
+    private JLabel casa_editriceD;
+
+
+
 
     private class LoadListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             autori = new DefaultListModel<Autore>();
@@ -135,13 +169,36 @@ public class Test {
             fileChooser.showOpenDialog(null);
 
             try{
-                  read(new Scanner(fileChooser.getSelectedFile()));
+                readAutore(new Scanner(fileChooser.getSelectedFile()));
             }catch(FileNotFoundException e){
                 System.err.println("File Not Found");
                 System.exit(1);
             }
 
             lista_autori.setModel(autori);
+        }
+    }
+
+    private class ListaAutoriListener implements javax.swing.event.ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent listSelectionEvent) {
+            if (!lista_autori.isSelectionEmpty())
+                lista_libri.setModel(autori.get(lista_autori.getSelectedIndex()).getLibri());
+        }
+    }
+
+    private class ListaLibriListener implements javax.swing.event.ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent listSelectionEvent) {
+            if (!lista_libri.isSelectionEmpty()){
+                Libro l = autori.get(lista_autori.getSelectedIndex()).getLibri().get(lista_libri.getSelectedIndex());
+                titoloD.setText(l.getTitolo());
+                annoD.setText(l.getAnno());
+                genereD.setText(l.getGenere());
+                casa_editriceD.setText(l.getCasa_editrice());
+            }
         }
     }
 }

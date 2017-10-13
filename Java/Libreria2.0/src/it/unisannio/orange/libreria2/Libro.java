@@ -67,26 +67,25 @@ public class Libro{
     }
 
     public static Libro read(Scanner s) {
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
         String titolo = s.nextLine();
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
-
         String codice_autore = s.nextLine();
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
         String anno = s.nextLine();
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
         String genere= s.nextLine();
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
         String casa_editrice = s.nextLine();
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
         String path_descrizione = s.nextLine();
-        if(!s.hasNext())
+        if(!s.hasNextLine())
             return null;
         String path_copertina = s.nextLine();
 
