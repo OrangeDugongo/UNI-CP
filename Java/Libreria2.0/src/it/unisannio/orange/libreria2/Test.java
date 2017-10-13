@@ -3,20 +3,20 @@ package it.unisannio.orange.libreria2;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import java.util.Scanner;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import javax.swing.*;
 
 public class Test {
 
     public Test() {
+
         //Frame
         JFrame frame = new JFrame("Libreria");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +32,7 @@ public class Test {
         //Lista libri
         lista_libri = new JList<Libro>();
         JScrollPane scroll_libri = new JScrollPane();
-        scroll_autori.setViewportView(lista_libri);
+        scroll_libri.setViewportView(lista_libri);
         elenco.add(scroll_autori);
         elenco.add(scroll_libri);
 
@@ -41,27 +41,29 @@ public class Test {
         info.setLayout(new GridLayout(5,2));
         //Titolo
         JLabel titolo = new JLabel("Titolo:");
-        JLabel titolo1 = new JLabel();
+        JLabel titoloD = new JLabel();
         //anno
         JLabel anno = new JLabel("Anno:");
-        JLabel anno1 = new JLabel();
+        JLabel annoD = new JLabel();
         //Genere
         JLabel genere = new JLabel("Genere:");
-        JLabel genere1 = new JLabel();
+        JLabel genereD = new JLabel();
         //Casa_editrice
         JLabel casa_editrice = new JLabel("Casa Editrice:");
-        JLabel casa_editrice1 = new JLabel();
+        JLabel casa_editriceD = new JLabel();
         //Load
         JLabel space = new JLabel();
         JButton load = new JButton("load");
+        load.addActionListener(new LoadListener());
+
         info.add(titolo);
-        info.add(titolo1);
+        info.add(titoloD);
         info.add(anno);
-        info.add(anno1);
+        info.add(annoD);
         info.add(genere);
-        info.add(genere1);
+        info.add(genereD);
         info.add(casa_editrice);
-        info.add(casa_editrice1);
+        info.add(casa_editriceD);
         info.add(space);
         info.add(load);
 
@@ -109,8 +111,37 @@ public class Test {
         new Test();
     }
 
+    public void read(Scanner sc){
+
+        Autore a = Autore.read(sc);
+        while(a!=null){
+            autori.addElement(a);
+            a = Autore.read(sc);
+        }
+    }
+
 
     private JList<Autore> lista_autori;
     private JList<Libro> lista_libri;
     private DefaultListModel<Autore> autori;
+    private DefaultListModel<Libro> libri;
+
+    private class LoadListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            autori = new DefaultListModel<Autore>();
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.showOpenDialog(null);
+
+            try{
+                  read(new Scanner(fileChooser.getSelectedFile()));
+            }catch(FileNotFoundException e){
+                System.err.println("File Not Found");
+                System.exit(1);
+            }
+
+            lista_autori.setModel(autori);
+        }
+    }
 }
