@@ -1,0 +1,25 @@
+George
+Orwell
+AT03
+res/file/bioAT03.txt
+res/img/at03.jpg
+Chuck
+Palahniuk
+AT04
+res/file/bioAT04.txt
+res/img/at04.jpg
+George R. R.
+Martin
+AT05
+res/file/bioAT05.txt
+res/img/at05.jpg
+Haruki
+Murakami
+AT07
+res/file/bioAT07.txt
+res/img/at07.jpg
+Alan 
+Moore
+AT08
+res/file/bioAT08.txt
+res/img/at08.jpg
