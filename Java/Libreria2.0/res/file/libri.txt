@@ -82,24 +82,10 @@ Romanzo Fantasy
 Bantam Spectra
 res/file/info12.txt
 res/img/cop12.jpg
-Castelli di rabbia
-AT06
-1991
-Fiction
-Feltrinelli
-res/file/info13.txt
-res/img/cop13.jpg
-Norwegiam Wood
-AT07
-1987
-Romanzo di formazione
-Kōdansha
-res/file/info14.txt
-res/img/cop14.jpg
 V for Vendetta
-AT08
+AT06
 1991
 Graphic novel
 Vertigo
-res/file/info15.txt
-res/img/cop15.jpg
+res/file/info13.txt
+res/img/cop13.jpg

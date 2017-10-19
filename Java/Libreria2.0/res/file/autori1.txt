@@ -23,8 +23,3 @@ Martin
 AT05
 res/file/bioAT05.txt
 res/img/at05.jpg
-Alessandro
-Baricco
-AT06
-res/file/bioAT06.txt
-res/img/at06.jpg
