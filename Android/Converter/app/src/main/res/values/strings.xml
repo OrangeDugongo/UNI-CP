@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Converter</string>
+    <string name="swap">swap</string>
+    <string name="btc">BTC</string>
+    <string name="eur">EUR</string>
+    <string name="convert">convert</string>
+    <string name="clear">clear</string>
+</resources>
