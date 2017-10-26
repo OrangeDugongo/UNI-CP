@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Convertitore</string>
-    <string name="swap">inverti</string>
+    <string name="swap">scambia</string>
     <string name="convert">converti</string>
     <string name="clear">pulisci</string>
 </resources>
