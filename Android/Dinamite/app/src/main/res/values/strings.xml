@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Dinamite</string>
+    <string name="BOOM_descrizione">distruggere il telefono</string>
+    <string name="BOOM_label">BOOM</string>
+    <string name="boom">BOOM!</string>
+</resources>
