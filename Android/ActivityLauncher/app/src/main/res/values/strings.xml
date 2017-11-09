@@ -4,4 +4,5 @@
     <string name="message">Cosa vuoi fare?</string>
     <string name="camera">Camera</string>
     <string name="ask">chiedi permessi</string>
+    <string name="detonatore">detonatore</string>
 </resources>

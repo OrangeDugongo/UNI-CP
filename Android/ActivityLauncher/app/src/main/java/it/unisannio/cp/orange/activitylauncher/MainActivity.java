@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CAMERA_CODE = 1400;
     private final static int PHONE_CODE = 1401;
+    private final static int BOOM_CODE = 1404;
+
+    private final static String ACTION_DETONATE = "it.unisannio.cp.orange.dinamite.DETONATE";
+    private final static String PERMISSION_BOOM = "it.unisannio.cp.orange.dinamite.permission.BOOM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,20 @@ public class MainActivity extends AppCompatActivity {
         //CAMERA
         Button camera = (Button) findViewById(R.id.camera);
         camera.setOnClickListener(new CameraListener());
+
+        //DETONATORE
+        Button detonatore = findViewById(R.id.detonatore);
+        detonatore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detonatoreIntent = new Intent();
+                detonatoreIntent.setAction(ACTION_DETONATE);
+                if(checkPermission(PERMISSION_BOOM))
+                    startActivity(detonatoreIntent);
+                else
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{PERMISSION_BOOM}, BOOM_CODE);
+            }
+        });
 
         //ASK
         Button ask = (Button) findViewById(R.id.ask);
@@ -61,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(call);
                 }
                 break;
+            case BOOM_CODE:
+                if(grantResults[0]==PackageManager.PERMISSION_DENIED)
+                    Toast.makeText(getApplicationContext(), "NO Permission", Toast.LENGTH_LONG).show();
+                else
+                    startActivity(new Intent(ACTION_DETONATE));
+                break;
+
         }
     }
 
@@ -100,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.CAMERA}, 1403);
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.CAMERA, PERMISSION_BOOM}, 1403);
         }
     }
 }
