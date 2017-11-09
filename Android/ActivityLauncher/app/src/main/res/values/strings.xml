@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Activity Launcher</string>
+    <string name="call">call</string>
+    <string name="message">Cosa vuoi fare?</string>
+    <string name="camera">Camera</string>
+    <string name="ask">chiedi permessi</string>
+</resources>
