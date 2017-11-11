@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent call = new Intent();
             call.setAction(Intent.ACTION_CALL);
-            call.setData(Uri.parse("tel:3338134583"));
+            call.setData(Uri.parse("tel:404"));
             if(checkPermission(Manifest.permission.CALL_PHONE))
                 startActivity(call);
             else
