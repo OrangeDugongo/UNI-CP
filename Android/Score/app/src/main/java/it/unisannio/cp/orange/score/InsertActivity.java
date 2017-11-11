@@ -17,31 +17,24 @@ public class InsertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
 
-        HashMap<String, Float> list = (HashMap<String, Float>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
-
-        EditText insert = findViewById(R.id.insert);
-        Button add = findViewById(R.id.add_button);
-        add.setOnClickListener(new AddListener(list, insert));
+        list = (HashMap<String, Float>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
+        insert = findViewById(R.id.insert);
     }
 
-    private class AddListener implements View.OnClickListener {
-        private HashMap<String, Float> list;
-        private EditText insert;
-
-        public AddListener(HashMap<String, Float> list, EditText insert) {
-            this.list = list;
-            this.insert = insert;
-        }
-
-        @Override
-        public void onClick(View v) {
-            list.put(insert.getText().toString(), new Float(0));
-
-            Intent result = new Intent();
-            result.putExtra(MainActivity.SERIE_TV_ARRAY, list);
-
-            setResult(Activity.RESULT_OK, result);
-            finish();
-        }
+    @Override
+    public void onBackPressed() {
+        Intent result = new Intent();
+        result.putExtra(MainActivity.SERIE_TV_ARRAY, list);
+        setResult(RESULT_OK, result);
+        finish();
     }
+
+
+    public void addSerie(View v){
+        list.put(insert.getText().toString(), new Float(0));
+        insert.setText("");
+    }
+
+    private HashMap<String, Float> list;
+    private EditText insert;
 }

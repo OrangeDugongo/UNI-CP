@@ -2,8 +2,10 @@
     <string name="app_name">Score</string>
     <string name="insert_sTV">Inserisci le serie TV</string>
     <string name="score_sTV">Valuta le serie TV</string>
-    <string name="leaderboard_sTV">Classifica</string>
     <string name="insert_hint">Inserisci la serie TV</string>
     <string name="insert_add">add</string>
     <string name="score_hint">Cerca la serie TV</string>
+    <string name="score_toast">Serie TV non valida</string>
+    <string name="leaderboard_text">Nessuna serie da mostrare</string>
+    <string name="leaderboard_sTV">Classifica</string>
 </resources>
