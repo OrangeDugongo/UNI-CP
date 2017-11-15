@@ -8,4 +8,5 @@
     <string name="score_toast">Serie TV non valida</string>
     <string name="leaderboard_text">Nessuna serie da mostrare</string>
     <string name="leaderboard_sTV">Classifica</string>
+    <string name="java_giàInserita">Serie TV già presente</string>
 </resources>

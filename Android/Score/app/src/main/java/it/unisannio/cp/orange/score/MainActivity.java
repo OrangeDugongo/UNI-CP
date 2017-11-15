@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -13,10 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(list==null)
+        if(list==null){
             list = new HashMap<>();
-        for (String s: SERIE_TV)
-            list.put(s, new Float(0));
+            for (String s: SERIE_TV)
+                list.put(s, new Float(0));
+        }
     }
 
     @Override
@@ -40,15 +42,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchScoreActivity(View v){
-        Intent scoreIntent = new Intent(this, ScoreActivity.class);
-        scoreIntent.putExtra(SERIE_TV_ARRAY, list);
-        startActivityForResult(scoreIntent, SCORE_CODE);
+        if(!list.isEmpty()) {
+            Intent scoreIntent = new Intent(this, ScoreActivity.class);
+            scoreIntent.putExtra(SERIE_TV_ARRAY, list);
+            startActivityForResult(scoreIntent, SCORE_CODE);
+        }else
+            Toast.makeText(this, R.string.leaderboard_text, Toast.LENGTH_LONG).show();
     }
 
     public void launchLeaderboardActivity(View v){
-        Intent leaderboardIntent = new Intent(this, LeaderboardActivity.class);
-        leaderboardIntent.putExtra(SERIE_TV_ARRAY, list);
-        startActivity(leaderboardIntent);
+        if(!list.isEmpty()){
+            Intent leaderboardIntent = new Intent(this, LeaderboardActivity.class);
+            leaderboardIntent.putExtra(SERIE_TV_ARRAY, list);
+            startActivity(leaderboardIntent);
+        }else
+            Toast.makeText(this, R.string.leaderboard_text, Toast.LENGTH_LONG).show();
     }
 
     public static final String SERIE_TV_ARRAY = "it.unisannio.cp.orange.score.ARRAY";

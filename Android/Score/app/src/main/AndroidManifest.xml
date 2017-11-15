@@ -16,12 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InsertActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ScoreActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".LeaderboardActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".InsertActivity"/>
+        <activity android:name=".ScoreActivity"/>
+        <activity android:name=".LeaderboardActivity"/>
     </application>
 
 </manifest>

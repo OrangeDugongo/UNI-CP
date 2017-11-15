@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -31,8 +32,11 @@ public class InsertActivity extends AppCompatActivity {
 
 
     public void addSerie(View v){
-        list.put(insert.getText().toString(), new Float(0));
-        insert.setText("");
+        if(!list.containsKey(insert.getText().toString())){
+            list.put(insert.getText().toString(), new Float(0));
+            insert.setText("");
+        }else
+            Toast.makeText(this,R.string.java_giàInserita, Toast.LENGTH_LONG).show();
     }
 
     private HashMap<String, Float> list;
