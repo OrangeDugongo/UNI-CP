@@ -1,6 +1,5 @@
-package it.unisannio.cp.orange.score;
+package it.unisannio.cp.orange.score.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +11,8 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import java.util.HashMap;
+
+import it.unisannio.cp.orange.score.R;
 
 public class ScoreActivity extends AppCompatActivity {
     @Override

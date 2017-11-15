@@ -1,4 +1,4 @@
-package it.unisannio.cp.orange.score;
+package it.unisannio.cp.orange.score.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.HashMap;
+
+import it.unisannio.cp.orange.score.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchLeaderboardActivity(View v){
         if(!list.isEmpty()){
-            Intent leaderboardIntent = new Intent(this, LeaderboardActivity.class);
+            Intent leaderboardIntent = new Intent(this, LeaderboardListActivity.class);
             leaderboardIntent.putExtra(SERIE_TV_ARRAY, list);
             startActivity(leaderboardIntent);
         }else
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int INSERT_CODE = 100;
     private static final int SCORE_CODE = 101;
     private static final String[] SERIE_TV= new String[]{"Breaking Bad", "Rick and Morty", "Game of Thrones",
-            "Stranger Things", "Halt and Catch Fire", "Big Mouth", "BoJack Horseman", "Silicon Valley", "New Girl"};
+            "Stranger Things", "Halt and Catch Fire", "Big Mouth", "BoJack Horseman", "Silicon Valley", "New Girl", "Grey's Anatomy"};
 
     private HashMap<String, Float> list;
 }

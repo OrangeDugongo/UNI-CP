@@ -1,4 +1,4 @@
-package it.unisannio.cp.orange.score;
+package it.unisannio.cp.orange.score.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
+
+import it.unisannio.cp.orange.score.R;
 
 public class LeaderboardActivity extends AppCompatActivity {
 

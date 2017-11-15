@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InsertActivity"/>
-        <activity android:name=".ScoreActivity"/>
-        <activity android:name=".LeaderboardActivity"/>
+        <activity android:name=".activity.InsertActivity" />
+        <activity android:name=".activity.ScoreActivity" />
+        <activity android:name=".activity.LeaderboardActivity" />
+        <activity android:name=".activity.LeaderboardListActivity"></activity>
     </application>
 
 </manifest>

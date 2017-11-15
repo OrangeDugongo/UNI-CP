@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:autofillHints="@string/score_hint"
-    tools:context="it.unisannio.cp.orange.score.ScoreActivity">
+    tools:context="it.unisannio.cp.orange.score.activity.ScoreActivity">
 
     <AutoCompleteTextView
         android:id="@+id/search"
