@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 import it.unisannio.cp.orange.score.R;
+import it.unisannio.cp.orange.score.Serie;
 
 public class ScoreActivity extends AppCompatActivity {
     @Override
@@ -21,7 +22,7 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
 
-        list = (HashMap<String, Float>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
+        list = (HashMap<String, Serie>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
         star = findViewById(R.id.star);
         search = findViewById(R.id.search);
 
@@ -34,7 +35,7 @@ public class ScoreActivity extends AppCompatActivity {
         search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                star.setRating(list.get(parent.getAdapter().getItem(position)));
+                star.setRating(list.get(parent.getAdapter().getItem(position)).getScore());
             }
         });
 
@@ -44,8 +45,8 @@ public class ScoreActivity extends AppCompatActivity {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 if(!list.containsKey(search.getText().toString()))
                     Toast.makeText(ScoreActivity.this, R.string.score_toast, Toast.LENGTH_LONG).show();
-                else if(rating!=list.get(search.getText().toString())){
-                    list.put(search.getText().toString(),rating);
+                else if(rating!=list.get(search.getText().toString()).getScore()){
+                    list.put(search.getText().toString(),new Serie(search.getText().toString(),rating));
                     search.setText("");
                 }
             }
@@ -62,7 +63,7 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
 
-    private HashMap<String, Float> list;
+    private HashMap<String, Serie> list;
     private RatingBar star;
     private AutoCompleteTextView search;
     private ArrayAdapter<String> adapter;

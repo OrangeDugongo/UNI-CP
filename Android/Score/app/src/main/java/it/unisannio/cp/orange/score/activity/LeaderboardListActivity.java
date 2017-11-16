@@ -11,13 +11,14 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 import it.unisannio.cp.orange.score.MyAdapter;
+import it.unisannio.cp.orange.score.Serie;
 
 public class LeaderboardListActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        list = (HashMap<String, Float>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
+        list = (HashMap<String, Serie>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
         sortList = sortByValue(list);
         MyAdapter adapter = new MyAdapter(sortList, this);
         getListView().setAdapter(adapter);
@@ -37,12 +38,12 @@ public class LeaderboardListActivity extends ListActivity {
         });
     }
 
-    private TreeMap<String, Float> sortByValue(final HashMap<String, Float> unsort){
-        TreeMap<String, Float> sort = new TreeMap<>(new Comparator<String>() {
+    private TreeMap<String, Serie> sortByValue(final HashMap<String, Serie> unsort){
+        TreeMap<String, Serie> sort = new TreeMap<>(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                Float a1 = unsort.get(o1);
-                Float a2 = unsort.get(o2);
+                Float a1 = new Float(unsort.get(o1).getScore());
+                Float a2 = new Float(unsort.get(o2).getScore());
                 int result = a2.compareTo(a1);
                 if(result==0)
                     result = o1.compareTo(o2);
@@ -53,6 +54,6 @@ public class LeaderboardListActivity extends ListActivity {
         return sort;
     }
 
-    private HashMap<String, Float> list;
-    private TreeMap<String, Float> sortList;
+    private HashMap<String, Serie> list;
+    private TreeMap<String, Serie> sortList;
 }

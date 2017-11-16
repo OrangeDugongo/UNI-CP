@@ -9,6 +9,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 import it.unisannio.cp.orange.score.R;
+import it.unisannio.cp.orange.score.Serie;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         if(list==null){
             list = new HashMap<>();
             for (String s: SERIE_TV)
-                list.put(s, new Float(0));
+                list.put(s, new Serie(s,0));
         }
     }
 
@@ -28,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode){
             case INSERT_CODE:
                 if(resultCode==RESULT_OK)
-                    list = (HashMap<String, Float>) data.getSerializableExtra(SERIE_TV_ARRAY);
+                    list = (HashMap<String, Serie>) data.getSerializableExtra(SERIE_TV_ARRAY);
                 break;
             case  SCORE_CODE:
                 if(resultCode==RESULT_OK)
-                    list = (HashMap<String, Float>) data.getSerializableExtra(SERIE_TV_ARRAY);
+                    list = (HashMap<String, Serie>) data.getSerializableExtra(SERIE_TV_ARRAY);
                 break;
         }
     }
@@ -67,5 +68,5 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] SERIE_TV= new String[]{"Breaking Bad", "Rick and Morty", "Game of Thrones",
             "Stranger Things", "Halt and Catch Fire", "Big Mouth", "BoJack Horseman", "Silicon Valley", "New Girl", "Grey's Anatomy"};
 
-    private HashMap<String, Float> list;
+    private HashMap<String, Serie> list;
 }

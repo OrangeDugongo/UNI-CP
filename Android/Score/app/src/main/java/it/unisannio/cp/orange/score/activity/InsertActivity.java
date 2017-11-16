@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 import it.unisannio.cp.orange.score.R;
+import it.unisannio.cp.orange.score.Serie;
 
 public class InsertActivity extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class InsertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
 
-        list = (HashMap<String, Float>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
+        list = (HashMap<String, Serie>) getIntent().getSerializableExtra(MainActivity.SERIE_TV_ARRAY);
         insert = findViewById(R.id.insert);
     }
 
@@ -33,12 +34,12 @@ public class InsertActivity extends AppCompatActivity {
 
     public void addSerie(View v){
         if(!list.containsKey(insert.getText().toString())){
-            list.put(insert.getText().toString(), new Float(0));
+            list.put(insert.getText().toString(), new Serie(insert.getText().toString(),0));
             insert.setText("");
         }else
             Toast.makeText(this,R.string.java_giàInserita, Toast.LENGTH_LONG).show();
     }
 
-    private HashMap<String, Float> list;
+    private HashMap<String, Serie> list;
     private EditText insert;
 }

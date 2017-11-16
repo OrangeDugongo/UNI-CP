@@ -23,7 +23,7 @@ import java.util.TreeMap;
 
 
 public class MyAdapter extends BaseAdapter {
-    public MyAdapter(TreeMap<String, Float> list, Context context) {
+    public MyAdapter(TreeMap<String, Serie> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -50,10 +50,12 @@ public class MyAdapter extends BaseAdapter {
         String selectedItem = (String) getItem(position);
         TextView nome = convertView.findViewById(R.id.nome);
         TextView score = convertView.findViewById(R.id.score);
+        TextView network = convertView.findViewById(R.id.network);
         ImageView img = convertView.findViewById(R.id.img);
-        float scoreValue = list.get(selectedItem).floatValue();
+        float scoreValue = list.get(selectedItem).getScore();
         nome.setText(selectedItem);
-        score.setText(list.get(selectedItem).toString());
+        network.setText(list.get(selectedItem).getNetwork());
+        score.setText(new Float(scoreValue).toString());
         if(scoreValue==0)
             img.setImageResource(R.mipmap.quest_img);
         else if (scoreValue<=2.5)
@@ -63,6 +65,6 @@ public class MyAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private TreeMap<String, Float> list;
+    private TreeMap<String, Serie> list;
     private Context context;
 }
