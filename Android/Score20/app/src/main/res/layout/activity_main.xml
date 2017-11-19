@@ -6,9 +6,8 @@
     tools:context="it.unisannio.cp.orange.score20.activity.MainActivity">
 
     <FrameLayout
-        android:id="@+id/frame"
+        android:id="@+id/master"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent"></FrameLayout>
 
 </LinearLayout>

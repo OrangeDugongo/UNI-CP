@@ -43,6 +43,7 @@ class SerieMaster : ListFragment() {
         for(str in array)
             map.put(str, Serie(str, 0f))
         listAdapter = SerieAdapter(map, context)
+        listView.choiceMode = ListView.CHOICE_MODE_SINGLE
     }
 
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {

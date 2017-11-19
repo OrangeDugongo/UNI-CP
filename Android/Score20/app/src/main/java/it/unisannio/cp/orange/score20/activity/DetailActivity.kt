@@ -9,6 +9,13 @@ import it.unisannio.cp.orange.score20.R
 import it.unisannio.cp.orange.score20.Serie
 import kotlinx.android.synthetic.main.detail_layout.*
 
+/*
+ *  Author: Raffaele Mignone
+ *  Mat: 863/747
+ *  Date: 16/11/17
+ *
+ */
+
 class DetailActivity : AppCompatActivity() {
     var item: Serie? = null
 

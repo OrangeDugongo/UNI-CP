@@ -13,6 +13,14 @@ import it.unisannio.cp.orange.score20.Serie
 import it.unisannio.cp.orange.score20.activity.MainActivity
 import kotlinx.android.synthetic.main.detail_layout.*
 
+/*
+ *  Author: Raffaele Mignone
+ *  Mat: 863/747
+ *  Date: 16/11/17
+ *
+ */
+
+
 class SerieDetail : Fragment() {
     private var onRatingChange: OnRatingChange? = null
     private var item: Serie? = null
@@ -37,8 +45,10 @@ class SerieDetail : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         ratingDetail.setOnRatingBarChangeListener({ratingBar: RatingBar, fl: Float, b: Boolean ->
-            item?.score=fl
-            onRatingChange?.onRatingChange(item as Serie)
+            if(fl!=item?.score) {
+                item?.score = fl
+                onRatingChange?.onRatingChange(item as Serie)
+            }
         })
     }
 

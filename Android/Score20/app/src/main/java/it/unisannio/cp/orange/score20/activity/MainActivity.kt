@@ -14,12 +14,20 @@ import it.unisannio.cp.orange.score20.Serie
 import it.unisannio.cp.orange.score20.fragment.SerieDetail
 import it.unisannio.cp.orange.score20.fragment.SerieMaster
 
+/*
+ *  Author: Raffaele Mignone
+ *  Mat: 863/747
+ *  Date: 16/11/17
+ *
+ */
+
 class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDetail.OnRatingChange {
 
     private val detail = SerieDetail()
     private val master = SerieMaster()
     private var masterFrame : FrameLayout? = null
     private var detailFrame : FrameLayout? = null
+    private var is2Pane = false
 
     companion object {
         const val ERROR = "ERROR"
@@ -30,7 +38,15 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fragmentManager.add(R.id.frame, master)
+        if(savedInstanceState == null)
+            fragmentManager.add(R.id.master, master)
+        else
+            fragmentManager.beginTransaction().replace(R.id.master, master).commit()
+        is2Pane = determineLayout()
+        if(is2Pane)
+            fragmentManager.addOnBackStackChangedListener {
+                detailFrame?.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 0f)
+            }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -45,12 +61,11 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
     }
 
     override fun onClickListener(item: Serie) {
-        if(findViewById<FrameLayout>(R.id.frame2)!=null) {  //Landscape mode
-            Log.d("landscape", "null")
+        if(is2Pane) {  //Landscape mode
             if (!detail.isAdded) {
-                fragmentManager.add(R.id.frame2, detail)
+                fragmentManager.beginTransaction().add(R.id.detail, detail).addToBackStack(null).commit()
                 fragmentManager.executePendingTransactions()
-                detailFrame = findViewById(R.id.frame2)
+                detailFrame = findViewById(R.id.detail)
                 detailFrame?.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
             }
             detail.showDetail(item)
@@ -64,6 +79,8 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
     override fun onRatingChange(item: Serie) {
         master.refresh(item)
     }
+
+    fun determineLayout() = findViewById<FrameLayout>(R.id.detail) != null
 
     fun FragmentManager.add(id:Int, frame:Fragment){
         this.beginTransaction().add(id, frame).commit()
