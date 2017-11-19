@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
-import android.widget.TextView
 import it.unisannio.cp.orange.score20.R
 import it.unisannio.cp.orange.score20.Serie
 import it.unisannio.cp.orange.score20.activity.MainActivity
+import kotlinx.android.synthetic.main.detail_layout.*
 
 class SerieDetail : Fragment() {
-    private var nome: TextView? = null
-    private var score: RatingBar? = null
     private var onRatingChange: OnRatingChange? = null
     private var item: Serie? = null
 
@@ -32,15 +30,13 @@ class SerieDetail : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_second_fragments, container, false)
+        return inflater.inflate(R.layout.detail_layout, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        nome = activity.findViewById(R.id.nomeDetail)
-        score = activity.findViewById(R.id.rating)
-        score?.setOnRatingBarChangeListener({ratingBar: RatingBar, fl: Float, b: Boolean ->
+        ratingDetail.setOnRatingBarChangeListener({ratingBar: RatingBar, fl: Float, b: Boolean ->
             item?.score=fl
             onRatingChange?.onRatingChange(item as Serie)
         })
@@ -48,7 +44,7 @@ class SerieDetail : Fragment() {
 
     fun showDetail(item: Serie){
         this.item=item
-        nome?.text = item.nome
-        score?.rating=item.score
+        nomeDetail.text=item.nome
+        ratingDetail.rating=item.score
     }
 }

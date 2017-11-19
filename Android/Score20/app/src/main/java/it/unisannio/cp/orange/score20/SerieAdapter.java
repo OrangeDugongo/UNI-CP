@@ -46,7 +46,7 @@ public class SerieAdapter extends BaseAdapter {
         if(convertView==null)
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item_layout, null);
         Serie selectedItem = (Serie) getItem(position);
-        TextView nome = convertView.findViewById(R.id.nomeDetail);
+        TextView nome = convertView.findViewById(R.id.nome);
         TextView score = convertView.findViewById(R.id.rating);
         TextView network = convertView.findViewById(R.id.network);
         ImageView img = convertView.findViewById(R.id.img);
