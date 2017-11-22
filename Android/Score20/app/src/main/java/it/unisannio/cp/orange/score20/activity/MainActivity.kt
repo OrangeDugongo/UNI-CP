@@ -1,8 +1,8 @@
 package it.unisannio.cp.orange.score20.activity
 
 import android.app.Activity
-import android.app.Fragment
 import android.app.FragmentManager
+import android.app.FragmentTransaction
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
 
     private val detail = SerieDetail()
     private val master = SerieMaster()
-    private var masterFrame : FrameLayout? = null
     private var detailFrame : FrameLayout? = null
     private var is2Pane = false
 
@@ -38,10 +37,11 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         if(savedInstanceState == null)
-            fragmentManager.add(R.id.master, master)
+            fragmentManager.transaction { add(R.id.master, master) }
         else
-            fragmentManager.beginTransaction().replace(R.id.master, master).commit()
+            fragmentManager.transaction { replace(R.id.master, master) }
         is2Pane = determineLayout()
         if(is2Pane)
             fragmentManager.addOnBackStackChangedListener {
@@ -63,7 +63,9 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
     override fun onClickListener(item: Serie) {
         if(is2Pane) {  //Landscape mode
             if (!detail.isAdded) {
-                fragmentManager.beginTransaction().add(R.id.detail, detail).addToBackStack(null).commit()
+                fragmentManager.transaction { replace(R.id.detail, detail)
+                    addToBackStack(null)
+                }
                 fragmentManager.executePendingTransactions()
                 detailFrame = findViewById(R.id.detail)
                 detailFrame?.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
@@ -82,7 +84,5 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
 
     fun determineLayout() = findViewById<FrameLayout>(R.id.detail) != null
 
-    fun FragmentManager.add(id:Int, frame:Fragment){
-        this.beginTransaction().add(id, frame).commit()
-    }
+    fun FragmentManager.transaction(func: FragmentTransaction.()->FragmentTransaction)=fragmentManager.beginTransaction().func().commit()
 }
