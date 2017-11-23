@@ -3,6 +3,7 @@ package it.unisannio.cp.orange.score20.fragment
 import android.app.ListFragment
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
 import android.widget.ListView

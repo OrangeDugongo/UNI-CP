@@ -25,9 +25,7 @@ class DetailActivity : AppCompatActivity() {
         item = intent.getSerializableExtra(MainActivity.EXTRA_ITEM) as Serie?
         nomeDetail.text=item?.nome
         ratingDetail.rating=item?.score?:0f
-        ratingDetail.setOnRatingBarChangeListener({ratingBar: RatingBar, fl: Float, b: Boolean ->
-            item?.score=fl
-        })
+        ratingDetail.setOnRatingBarChangeListener({ _, fl: Float, _ -> item?.score=fl })
     }
 
     override fun onBackPressed() {

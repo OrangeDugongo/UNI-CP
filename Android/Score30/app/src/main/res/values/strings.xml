@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Score 3.0</string>
     <string name="menu_info">Info</string>
+    <string name="menu_bug_report">Bug Report</string>
+    <string name="on_delete">Hai eliminato un elemento</string>
+    <string name="undo">Annulla</string>
     <string name="con_menu_delete">Elimina</string>
     <string name="con_menu_azzera">Azzera</string>
     <string name="info_text">Score 3.0</string>
+    <string name="bug_pick_date">Pick Date</string>
+    <string name="bug_pick_time">Pick Time</string>
+    <string name="bug_send">Invia</string>
 </resources>

@@ -5,6 +5,8 @@ import android.app.FragmentManager
 import android.app.FragmentTransaction
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.ContextMenu
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
             fragmentManager.addOnBackStackChangedListener {
                 detailFrame?.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 0f)
             }
+        fab.setOnClickListener({ _ -> master.refresh(Serie("test", 0f))})
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -73,6 +76,11 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
                 startActivity(infoIntent)
                 true
             }
+            R.id.menu_bug_report -> {
+                val bagReportIntent = Intent(this, BugReport::class.java)
+                startActivity(bagReportIntent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -83,9 +91,15 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         val pos = (item?.menuInfo as AdapterView.AdapterContextMenuInfo).position
+        val serieItem = master.listAdapter.getItem(pos) as Serie
         return when (item.itemId){
-            R.id.list_con_delete -> master.delete(master.listAdapter.getItem(pos) as Serie)
-            R.id.list_con_azzera -> master.toZero(master.listAdapter.getItem(pos) as Serie)
+            R.id.list_con_delete -> {
+                master.delete(serieItem)
+                val snack = Snackbar.make(findViewById(R.id.main_layout), R.string.on_delete, Snackbar.LENGTH_SHORT)
+                snack.setAction(R.string.undo, { _ -> master.refresh(serieItem) }).show()
+                return true
+            }
+            R.id.list_con_azzera -> master.toZero(serieItem)
             else -> super.onContextItemSelected(item)
         }
     }

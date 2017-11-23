@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DetailActivity" />
-        <activity android:name=".activity.Info"></activity>
+        <activity android:name=".activity.Info" />
+        <activity android:name=".activity.BugReport"></activity>
     </application>
 
 </manifest>

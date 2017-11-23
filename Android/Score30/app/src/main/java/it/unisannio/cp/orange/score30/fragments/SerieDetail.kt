@@ -44,7 +44,7 @@ class SerieDetail : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        ratingDetail.setOnRatingBarChangeListener({ratingBar: RatingBar, fl: Float, b: Boolean ->
+        ratingDetail.setOnRatingBarChangeListener({ _, fl: Float, _ ->
             if(fl!=item?.score) {
                 item?.score = fl
                 onRatingChange?.onRatingChange(item as Serie)
