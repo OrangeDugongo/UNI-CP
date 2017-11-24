@@ -10,4 +10,8 @@
     <string name="bug_pick_date">Pick Date</string>
     <string name="bug_pick_time">Pick Time</string>
     <string name="bug_send">Invia</string>
+    <string name="add_dialog">Nome</string>
+    <string name="add_dialog_title">Aggiung una serie</string>
+    <string name="duplicate">Serie TV già presente</string>
+    <string name="add">Aggiungi</string>
 </resources>

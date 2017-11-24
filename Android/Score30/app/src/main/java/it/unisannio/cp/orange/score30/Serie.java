@@ -54,12 +54,15 @@ public class Serie implements Serializable{
                 return "AMC";
             case "Game of Thrones":
             case "Silicon Valley":
+            case "Westworld":
                 return "HBO";
             case "Grey's Anatomy":
             case "New Girl":
                 return "FOX";
             case "Rick and Morty":
                 return "Adult Swim";
+            case "Mr. Robot":
+                return "USA";
             default:
                 return "Network Unknown";
         }

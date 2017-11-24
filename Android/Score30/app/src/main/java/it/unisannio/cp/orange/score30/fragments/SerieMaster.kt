@@ -57,6 +57,13 @@ class SerieMaster : ListFragment() {
         listAdapter = SerieAdapter(sortByValue(map), context)
     }
 
+    fun add(name: String): Boolean{
+        if(map.containsKey(name)) return false
+        map.put(name, Serie(name, 0f))
+        listAdapter = SerieAdapter(sortByValue(map), context)
+        return true
+    }
+
     fun delete(item: Serie): Boolean{
         map.remove(item.nome)
         listAdapter = SerieAdapter(sortByValue(map), context)

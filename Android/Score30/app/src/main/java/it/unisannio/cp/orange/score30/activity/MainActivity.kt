@@ -1,21 +1,13 @@
 package it.unisannio.cp.orange.score30.activity
 
-import android.app.Activity
-import android.app.FragmentManager
-import android.app.FragmentTransaction
+import android.app.*
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.ContextMenu
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
-import android.widget.FrameLayout
-import android.widget.LinearLayout
+import android.view.*
+import android.widget.*
 import it.unisannio.cp.orange.score20.fragment.SerieDetail
 import it.unisannio.cp.orange.score20.fragment.SerieMaster
 import it.unisannio.cp.orange.score30.R
@@ -50,16 +42,17 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
             fragmentManager.addOnBackStackChangedListener {
                 detailFrame?.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 0f)
             }
-        fab.setOnClickListener({ _ -> master.refresh(Serie("test", 0f))})
+        fab.setOnClickListener({ _ ->
+            addDialog().show()
+        })
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode){
             CODE_DETAIL -> {
                 if(resultCode == Activity.RESULT_OK)
                     master.refresh(data?.getSerializableExtra(EXTRA_ITEM) as Serie)
                 else
-                    Log.v(ERROR, "no result")
+                    Log.e(ERROR, "no result")
             }
         }
     }
@@ -128,5 +121,20 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
 
     fun determineLayout() = findViewById<FrameLayout>(R.id.detail) != null
 
+    fun addDialog(): AlertDialog{
+        val view = layoutInflater.inflate(R.layout.add_dialog, null)
+        val etAdd = view.findViewById<EditText>(R.id.add_editText)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.add_dialog_title)
+        builder.setView(view)
+        builder.setPositiveButton(R.string.add, { _, _ ->
+            if(!master.add(etAdd.text.toString()))
+                Snackbar.make(findViewById(R.id.main_layout), R.string.duplicate, Snackbar.LENGTH_SHORT).show()
+        })
+        builder.setNegativeButton(R.string.undo, null)
+        return builder.create()
+    }
+
     fun FragmentManager.transaction(func: FragmentTransaction.()-> FragmentTransaction)=fragmentManager.beginTransaction().func().commit()
 }
+
