@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
             addDialog().show()
         })
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode){
             CODE_DETAIL -> {

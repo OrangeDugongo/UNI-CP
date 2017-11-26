@@ -14,4 +14,6 @@
     <string name="add_dialog_title">Aggiung una serie</string>
     <string name="duplicate">Serie TV già presente</string>
     <string name="add">Aggiungi</string>
+    <string name="order_top_down">Decrescente</string>
+    <string name="order_bottom_up">Crescente</string>
 </resources>
