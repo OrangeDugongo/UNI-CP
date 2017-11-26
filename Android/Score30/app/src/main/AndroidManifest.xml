@@ -20,8 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DetailActivity" />
-        <activity android:name=".activity.Info" />
-        <activity android:name=".activity.BugReport"></activity>
+        <activity android:name=".activity.SettingsActivity"
+            android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.BugReportActivity"
+            android:parentActivityName=".activity.MainActivity"/>
     </application>
 
 </manifest>

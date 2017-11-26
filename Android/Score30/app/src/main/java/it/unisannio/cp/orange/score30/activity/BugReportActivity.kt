@@ -10,7 +10,7 @@ import it.unisannio.cp.orange.score30.R
 import kotlinx.android.synthetic.main.activity_bug_report.*
 import java.util.*
 
-class BugReport : AppCompatActivity() {
+class BugReportActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="it.unisannio.cp.orange.score30.activity.BugReport">
+    tools:context="it.unisannio.cp.orange.score30.activity.BugReportActivity">
 
     <EditText
         android:id="@+id/editData"

@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">Score 3.0</string>
-    <string name="menu_info">Info</string>
-    <string name="menu_bug_report">Bug Report</string>
-    <string name="on_delete">Hai eliminato un elemento</string>
     <string name="undo">Annulla</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_bug_report">Bug Report</string>
     <string name="con_menu_delete">Elimina</string>
     <string name="con_menu_azzera">Azzera</string>
-    <string name="info_text">Score 3.0</string>
+    <string name="on_delete">Hai eliminato un elemento</string>
+    <string name="settings_text">Score 3.0</string>
+    <string name="settings_became_pro">Diventa pro</string>
+    <string name="settings_pro">Sei pro</string>
+    <string name="settings_github">Fork me on github</string>
+    <string name="settings_github_uri">https://github.com/OrangeDugongo/UNI-CP</string>
     <string name="bug_pick_date">Pick Date</string>
     <string name="bug_pick_time">Pick Time</string>
     <string name="bug_send">Invia</string>

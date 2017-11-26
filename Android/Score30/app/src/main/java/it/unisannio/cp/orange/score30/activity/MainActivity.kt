@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_info ->{
-                val infoIntent = Intent(this, Info::class.java)
+                val infoIntent = Intent(this, SettingsActivity::class.java)
                 startActivity(infoIntent)
                 true
             }
             R.id.menu_bug_report -> {
-                val bagReportIntent = Intent(this, BugReport::class.java)
+                val bagReportIntent = Intent(this, BugReportActivity::class.java)
                 startActivity(bagReportIntent)
                 true
             }

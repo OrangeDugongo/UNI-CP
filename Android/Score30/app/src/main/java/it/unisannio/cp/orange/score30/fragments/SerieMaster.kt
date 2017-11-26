@@ -49,7 +49,9 @@ class SerieMaster : ListFragment() {
         super.onActivityCreated(savedInstanceState)
 
         read()
-        map.put(getString(R.string.buy_pro), Serie("Buy Pro", 10f))
+        val sp = activity.getSharedPreferences("settings", Activity.MODE_PRIVATE)
+        if(!sp.getBoolean("pro", false))
+            map.put(getString(R.string.buy_pro), Serie("Buy Pro", 10f))
         listAdapter = SerieAdapter(sortByValue(map), context)
         listView.choiceMode = ListView.CHOICE_MODE_SINGLE
         registerForContextMenu(listView)
