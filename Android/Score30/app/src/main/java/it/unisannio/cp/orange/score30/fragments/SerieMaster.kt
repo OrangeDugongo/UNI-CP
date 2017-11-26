@@ -1,14 +1,18 @@
 package it.unisannio.cp.orange.score20.fragment
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ListFragment
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ListView
 import it.unisannio.cp.orange.score30.R
 import it.unisannio.cp.orange.score30.Serie
@@ -45,6 +49,7 @@ class SerieMaster : ListFragment() {
         super.onActivityCreated(savedInstanceState)
 
         read()
+        map.put(getString(R.string.buy_pro), Serie("Buy Pro", 10f))
         listAdapter = SerieAdapter(sortByValue(map), context)
         listView.choiceMode = ListView.CHOICE_MODE_SINGLE
         registerForContextMenu(listView)
@@ -58,7 +63,15 @@ class SerieMaster : ListFragment() {
     }
 
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        onClickListener?.onClickListener(listView.getItemAtPosition(position) as Serie)
+        val item = listView.getItemAtPosition(position) as Serie
+        if(item.nome == getString(R.string.buy_pro)) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.bitcoin_uri)))
+            if(intent.resolveActivity(activity.packageManager) != null)
+                startActivity(intent)
+            else
+                paymentDialog().show()
+        }else
+            onClickListener?.onClickListener(listView.getItemAtPosition(position) as Serie)
     }
 
     fun refresh(item: Serie){
@@ -125,5 +138,17 @@ class SerieMaster : ListFragment() {
         val sp = context.getSharedPreferences("list", Activity.MODE_PRIVATE)
         for(s in sp.all.keys)
             map.put(s, Serie(s, sp.getFloat(s, 0f)))
+    }
+
+    private fun paymentDialog(): AlertDialog{
+        val view = activity.layoutInflater.inflate(R.layout.payment_dialog, null)
+        val qr = view.findViewById<ImageView>(R.id.qr)
+        val path = "android.resource://" + activity.packageName + "/" + R.raw.qr_code
+        qr.setImageURI(Uri.parse(path))
+        val builder = AlertDialog.Builder(context)
+        builder.setView(view)
+        builder.setTitle(getString(R.string.buy_pro))
+        builder.setPositiveButton("ok", null)
+        return builder.create()
     }
 }

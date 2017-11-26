@@ -16,4 +16,6 @@
     <string name="add">Aggiungi</string>
     <string name="order_top_down">Decrescente</string>
     <string name="order_bottom_up">Crescente</string>
+    <string name="buy_pro">Buy Pro</string>
+    <string name="bitcoin_uri">bitcoin:13ySu92qiyczNSsWV8iR5U7dnouxca91Ng?amount=0.0001</string>
 </resources>
