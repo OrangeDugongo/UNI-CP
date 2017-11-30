@@ -8,10 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import android.widget.*
-import it.unisannio.cp.orange.score20.fragment.SerieDetail
-import it.unisannio.cp.orange.score20.fragment.SerieMaster
 import it.unisannio.cp.orange.score30.R
 import it.unisannio.cp.orange.score30.Serie
+import it.unisannio.cp.orange.score30.fragments.SerieDetail
+import it.unisannio.cp.orange.score30.fragments.SerieMaster
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
                 true
             }
             R.id.menu_bug_report -> {
-                val bagReportIntent = Intent(this, BugReportActivity::class.java)
-                startActivity(bagReportIntent)
+                val bugReportIntent = Intent(this, BugReportActivity::class.java)
+                startActivity(bugReportIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -31,7 +31,7 @@ class BugReportActivity : AppCompatActivity() {
         send.setOnClickListener({ _ ->
             val mail = Intent(Intent.ACTION_SENDTO)
             mail.setData(Uri.parse("mailto:"))
-            mail.putExtra(Intent.EXTRA_EMAIL, Array<String>(1){"spamcarneinscatola@gmail.com"})
+            mail.putExtra(Intent.EXTRA_EMAIL, Array(1){"spamcarneinscatola@gmail.com"})
             mail.putExtra(Intent.EXTRA_SUBJECT, "bug on ${editData.text} ${editTime.text}")
             mail.putExtra(Intent.EXTRA_TEXT, editText.text)
             if(mail.resolveActivity(packageManager) != null)

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.RatingBar
 import it.unisannio.cp.orange.score30.R
 import it.unisannio.cp.orange.score30.Serie
 import kotlinx.android.synthetic.main.detail_layout.*

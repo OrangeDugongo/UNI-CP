@@ -1,4 +1,4 @@
-package it.unisannio.cp.orange.score20.fragment
+package it.unisannio.cp.orange.score30.fragments
 
 import android.app.Fragment
 import android.content.Context
@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
 import it.unisannio.cp.orange.score30.R
 import it.unisannio.cp.orange.score30.Serie
 import it.unisannio.cp.orange.score30.activity.MainActivity

@@ -2,6 +2,7 @@ package it.unisannio.cp.orange.score30.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -22,9 +23,13 @@ class SettingsActivity : AppCompatActivity() {
 
         pro.setOnLongClickListener({ _ ->
             val editor = sp.edit()
-            editor.putBoolean("pro", true)
+            val b = sp.getBoolean("pro", false)
+            editor.putBoolean("pro", !b)
             editor.apply()
-            pro.setText(R.string.settings_pro)
+            if(b)
+                pro.setText(R.string.settings_became_pro)
+            else
+                pro.setText(R.string.settings_pro)
             true
         })
 

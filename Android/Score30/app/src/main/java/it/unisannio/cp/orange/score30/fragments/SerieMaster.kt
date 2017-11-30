@@ -1,17 +1,14 @@
-package it.unisannio.cp.orange.score20.fragment
+package it.unisannio.cp.orange.score30.fragments
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.ListFragment
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ListView
 import it.unisannio.cp.orange.score30.R
