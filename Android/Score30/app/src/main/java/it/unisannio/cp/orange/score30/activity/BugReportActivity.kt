@@ -47,10 +47,10 @@ class BugReportActivity : AppCompatActivity() {
                     date[3], date[4], true).show()
         })
 
-        send.setOnClickListener({ _ ->
+        send.setOnClickListener({ _ ->      //viene creato un intent per inviare una mail
             val mail = Intent(Intent.ACTION_SENDTO)
             mail.setData(Uri.parse("mailto:"))
-            mail.putExtra(Intent.EXTRA_EMAIL, Array(1){"spamcarneinscatola@gmail.com"})
+            mail.putExtra(Intent.EXTRA_EMAIL, Array(1){"spamcarneinscatola@gmail.com"})     //indirizzo a cui inviare la mail
             mail.putExtra(Intent.EXTRA_SUBJECT, "bug on ${editData.text} ${editTime.text}")
             mail.putExtra(Intent.EXTRA_TEXT, editText.text)
             if(mail.resolveActivity(packageManager) != null)
@@ -58,7 +58,7 @@ class BugReportActivity : AppCompatActivity() {
         })
     }
 
-    fun getDate(): IntArray{
+    fun getDate(): IntArray{        //shortcuts per avere la data e l'ora
         val date = IntArray(5)
         val c = Calendar.getInstance()
         date[0] = c.get(Calendar.YEAR)

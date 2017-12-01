@@ -40,11 +40,9 @@ class SettingsActivity : AppCompatActivity() {
         else
             pro.setText(R.string.settings_became_pro)
 
-        pro.setOnLongClickListener({ _ ->
-            val editor = sp.edit()
+        pro.setOnLongClickListener({ _ ->           //metodo test per provare la versione pro e non pro
             val b = sp.getBoolean("pro", false)
-            editor.putBoolean("pro", !b)
-            editor.apply()
+            sp.editor { putBoolean("pro", !b) }
             if(b)
                 pro.setText(R.string.settings_became_pro)
             else
@@ -57,15 +55,16 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.settings_github_uri)))
             startActivity(intent)
         })
-        order.isChecked = sp.getInt("order", 1) == 1
 
+        order.isChecked = sp.getInt("order", 1) == 1    //ripristina il valore precedente dillo switch
         order.setOnCheckedChangeListener({ _, isChecked: Boolean ->
-            val editor = sp.edit()
             if(isChecked)
-                editor.putInt("order", 1)
+                sp.editor { putInt("order", 1) }
             else
-                editor.putInt("order", -1)
-            editor.apply()
+                sp.editor { putInt("order", -1) }
         })
     }
+
+    //shortcut per editare una SharedPreferences
+    fun SharedPreferences.editor(func: SharedPreferences.Editor.() -> SharedPreferences.Editor) = this.edit().func().apply()
 }

@@ -56,14 +56,12 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
             fragmentManager.transaction { add(R.id.master, master) }
         else
             fragmentManager.transaction { replace(R.id.master, master) }
-        is2Pane = determineLayout()
+        is2Pane = determineLayout()     //determina se il dispositivo è in landscape o no
         if(is2Pane)
             fragmentManager.addOnBackStackChangedListener {
                 detailFrame?.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 0f)
             }
-        fab.setOnClickListener({ _ ->
-            addDialog().show()
-        })
+        fab.setOnClickListener({ _ -> addDialog().show() })     //mostra un dialog per aggiungere un elemento
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -82,7 +80,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {   //cosa fare quando una voce del menu viene selezionata
         return when (item.itemId) {
             R.id.menu_info ->{
                 val infoIntent = Intent(this, SettingsActivity::class.java)
@@ -102,7 +100,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
         menuInflater.inflate(R.menu.list_con_menu, menu)
     }
 
-    override fun onContextItemSelected(item: MenuItem?): Boolean {
+    override fun onContextItemSelected(item: MenuItem?): Boolean {  //cosa fare quando la voce di un menu contestuale viene selezionata
         val pos = (item?.menuInfo as AdapterView.AdapterContextMenuInfo).position
         val serieItem = master.listAdapter.getItem(pos) as Serie
         return when (item.itemId){
@@ -119,7 +117,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
 
     override fun onClickListener(item: Serie) {
         if(is2Pane) {  //Landscape mode
-            if (!detail.isAdded) {
+            if (!detail.isAdded) {      //se il detail frame non è presente viene aggiunto alla UI
                 fragmentManager.transaction { replace(R.id.detail, detail)
                     addToBackStack(null)
                 }
@@ -129,7 +127,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
             }
             detail.showDetail(item)
         }else{
-            val detailIntent = Intent(this, DetailActivity::class.java)
+            val detailIntent = Intent(this, DetailActivity::class.java) //viene lanciata la detail activity
             detailIntent.putExtra(EXTRA_ITEM, item)
             startActivityForResult(detailIntent, CODE_DETAIL)
         }
@@ -141,7 +139,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
 
     fun determineLayout() = findViewById<FrameLayout>(R.id.detail) != null
 
-    fun addDialog(): AlertDialog{
+    fun addDialog(): AlertDialog{       //crea un dialog per l'aggiunta di un elemento
         val view = layoutInflater.inflate(R.layout.add_dialog, null)
         val etAdd = view.findViewById<EditText>(R.id.add_editText)
         val builder = AlertDialog.Builder(this)
@@ -155,6 +153,7 @@ class MainActivity : AppCompatActivity(), SerieMaster.OnClickListener, SerieDeta
         return builder.create()
     }
 
+    //shortcut per le operazioni sui frame
     fun FragmentManager.transaction(func: FragmentTransaction.()-> FragmentTransaction)=fragmentManager.beginTransaction().func().commit()
 }
 

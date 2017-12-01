@@ -24,6 +24,7 @@ import android.app.AlertDialog
 import android.app.ListFragment
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -34,6 +35,7 @@ import it.unisannio.cp.orange.score30.R
 import it.unisannio.cp.orange.score30.Serie
 import it.unisannio.cp.orange.score30.SerieAdapter
 import it.unisannio.cp.orange.score30.activity.MainActivity
+import it.unisannio.cp.orange.score30.activity.SettingsActivity
 import java.util.*
 
 /*
@@ -66,11 +68,11 @@ class SerieMaster : ListFragment() {
 
         read()
         val sp = activity.getSharedPreferences("settings", Activity.MODE_PRIVATE)
-        if(!sp.getBoolean("pro", false))
+        if(!sp.getBoolean("pro", false))    //aggiunge alla lista il banner pubblicitario
             map.put(getString(R.string.buy_pro), Serie("Buy Pro", 10f))
         listAdapter = SerieAdapter(sortByValue(map), context)
         listView.choiceMode = ListView.CHOICE_MODE_SINGLE
-        registerForContextMenu(listView)
+        registerForContextMenu(listView)        //registra la lista per il context menu
     }
 
     override fun onStart() {
@@ -82,12 +84,12 @@ class SerieMaster : ListFragment() {
 
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
         val item = listView.getItemAtPosition(position) as Serie
-        if(item.nome == getString(R.string.buy_pro)) {
+        if(item.nome == getString(R.string.buy_pro)) {  //se si è cliccato il banner
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.bitcoin_uri)))
-            if(intent.resolveActivity(activity.packageManager) != null)
+            if(intent.resolveActivity(activity.packageManager) != null)     //controlla se il telefono può gestire pagamenti bitcoin
                 startActivity(intent)
             else
-                paymentDialog().show()
+                paymentDialog().show()      //mostra il qr code per il pagamento
         }else
             onClickListener?.onClickListener(listView.getItemAtPosition(position) as Serie)
     }
@@ -135,30 +137,25 @@ class SerieMaster : ListFragment() {
         return sort
     }
 
-    fun save(item: Serie){
+    fun save(item: Serie){      //salva un elemento nelle SP
         Log.d("SAVE", "in")
         val sp = context.getSharedPreferences("list", Activity.MODE_PRIVATE)
-        val editor = sp.edit()
-        editor.putFloat(item.nome, item.score)
-        editor.apply()
+        sp.editor { putFloat(item.nome, item.score) }
     }
 
-    fun remove(nome: String){
-        Log.d("SAVE", "in")
+    fun remove(nome: String){   //rimuove un elemento dalle SP
+        Log.d("REMOVE", "in")
         val sp = context.getSharedPreferences("list", Activity.MODE_PRIVATE)
-        val editor = sp.edit()
-        editor.remove(nome)
-        editor.apply()
+        sp.editor { remove(nome) }
     }
 
-    fun read(){
-        Log.d("Read", "in")
+    fun read(){     //ripristina la lista dalla SP
+        Log.d("READ", "in")
         val sp = context.getSharedPreferences("list", Activity.MODE_PRIVATE)
-        for(s in sp.all.keys)
-            map.put(s, Serie(s, sp.getFloat(s, 0f)))
+        sp.all.keys.forEach { map.put(it, Serie(it, sp.getFloat(it, 0f))) }
     }
 
-    private fun paymentDialog(): AlertDialog{
+    private fun paymentDialog(): AlertDialog{       //crea un dialog
         val view = activity.layoutInflater.inflate(R.layout.payment_dialog, null)
         val qr = view.findViewById<ImageView>(R.id.qr)
         val path = "android.resource://" + activity.packageName + "/" + R.raw.qr_code
@@ -170,3 +167,5 @@ class SerieMaster : ListFragment() {
         return builder.create()
     }
 }
+//shortcut per editare una SharedPreferences
+fun SharedPreferences.editor(func: SharedPreferences.Editor.() -> SharedPreferences.Editor) = this.edit().func().apply()

@@ -46,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
         ratingDetail.setOnRatingBarChangeListener({ _, fl: Float, _ -> item?.score=fl })
     }
 
-    override fun onBackPressed() {
+    override fun onBackPressed() {  //restituisce l'elemento con le eventuali modifiche
         val result = Intent()
         result.putExtra(MainActivity.EXTRA_ITEM, item)
         setResult(Activity.RESULT_OK, result)
