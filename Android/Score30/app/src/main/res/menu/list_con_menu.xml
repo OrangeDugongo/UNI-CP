@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/list_con_delete"
+        android:title="@string/con_menu_delete" />
+    <item
+        android:id="@+id/list_con_azzera"
+        android:title="@string/con_menu_azzera" />
+</menu>
