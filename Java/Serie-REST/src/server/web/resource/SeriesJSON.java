@@ -19,6 +19,6 @@ public class SeriesJSON extends ServerResource{
     public String getKeys(){
         Gson gson = new Gson();
         RegistryAPI rg = RegistryAPI.instnce();
-        return gson.toJson(Arrays.toString(rg.getKeys()), String.class);
+        return gson.toJson(rg.getKeys(), String[].class);
     }
 }
